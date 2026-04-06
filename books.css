@@ -1,0 +1,147 @@
+/* ===== GENERAL ===== */
+body {
+    margin: 0;
+    font-family: Georgia, serif;
+    background: #f5f1e6; /* old paper */
+    color: #3b2f2f;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #e8dcc7;
+    padding: 15px 20px;
+    border-bottom: 2px solid #b89b72;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar h2 {
+    margin: 0;
+    color: #4b3621;
+    font-size: 20px;
+}
+
+.links a {
+    color: #4b3621;
+    margin: 0 12px;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.links a:hover {
+    color: #8c6b45;
+}
+
+/* ===== LANDING PAGE ===== */
+#home {
+    text-align: center;
+}
+
+.banner {
+    background: #e8dcc7;
+    padding: 40px 20px;
+    border-bottom: 3px solid #b89b72;
+}
+
+.banner h1 {
+    font-size: 32px;
+    margin: 10px 0;
+    color: #4b3621;
+}
+
+.banner p {
+    font-size: 16px;
+    color: #5a4632;
+}
+
+/* ===== SECTION TITLES ===== */
+.section {
+    margin: 30px 20px 10px;
+    font-size: 22px;
+    color: #4b3621;
+    border-left: 5px solid #b89b72;
+    padding-left: 10px;
+}
+
+/* ===== GRID ===== */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    padding: 20px;
+}
+
+/* ===== CARD ===== */
+.card {
+    background: #b89b72;
+    border: 1px solid #d6c3a5;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 2px 3px 8px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 3px 6px 12px rgba(0,0,0,0.15);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* ===== PRICE ===== */
+.price {
+    color: #5a4632;
+    font-weight: bold;
+}
+
+/* ===== BUTTON ===== */
+button {
+    background: #8c6b45;
+    color: white;
+    border: none;
+    padding: 10px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: Georgia, serif;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #6f5437;
+}
+
+/* ===== PRODUCT SECTION ===== */
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    background: #fffaf0;
+    align-items: center;
+}
+
+.main-img {
+    width: 300px;
+    border-radius: 10px;
+    border: 2px solid #d6c3a5;
+}
+
+.details {
+    max-width: 400px;
+}
+
+/* ===== CENTER ===== */
+.center {
+    text-align: center;
+    margin-top: 20px;
+}

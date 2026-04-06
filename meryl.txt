@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter & Relics</title>
+<link rel="stylesheet" href="books.css">
+</head>
+
+<body>
+
+<!-- LANDING PAGE -->
+<div id="landingPage">
+  <div class="banner">
+<img src="logo.jpeg" alt="Logo">
+      <h1>✨Book Shop Sale ✨</h1>
+      <p>Up to 50% OFF • Free Shipping Deals</p>
+      <h1>Welcome to Chapter & Relics Book Haven</h1> 
+<p>Explore worlds of mythology & legends</p> 
+<p>We mainly sell Greek mythology book references, mostly available.<br> 
+Planning to add more book categories soon.</p> </div> 
+
+<!-- FEATURED ITEMS --> 
+<h2 class="section">🔥 Featured Books</h2> 
+<div class="grid"> <div class="card"> 
+<img src ="pjoset.jpeg" alt ="Percy Jackson" Width ="150" Height ="150">
+<h3>Percy Jackson Set</h3> 
+<p>₱1200 • 30% OFF 
+⭐4.7 | Sold 5000</p> </div>
+
+ 
+<div class="card"> 
+<img src ="toaset.jpeg" alt ="Apollo" Width ="150" Height ="150">
+<h3>Trials of Apollo Set</h3> 
+<p>₱1000 • 25% OFF
+⭐4.6 | Sold 4560</p> </div> </div>
+
+<!-- VOUCHERS --> 
+<h2 class="section">🎟️ Vouchers</h2> 
+<div class="grid"> 
+<div class="card">₱50% OFF (Min ₱500)</div> 
+<div class="card">₱40% OFF (Min ₱250)</div>
+<div class="card">₱25% OFF (Min ₱150)</div>
+<div class="card">₱10% OFF (Min ₱0)</div>
+<div class="card">Free Shipping 100% OFF (Min ₱50+)</div> </div>
+
+  <div class="center">
+      <button onclick="goToShop()">Proceed to Shop →</button>
+  </div>
+</div>
+
+<!-- MAIN SHOP -->
+<div id="mainShop" style="display:none;">
+
+  <div class="navbar">
+      <h2>📚 Chapter & Relics</h2>
+
+<div class="links">
+    <a onclick="scrollToSection('home')">Home</a>
+    <a onclick="scrollToSection('products')">Products</a>
+    <a onclick="scrollToSection('about')">About</a>
+    <a onclick="goToPage('contact.html')">Contact</a>
+  </div>
+</nav>
+
+<!-- SECTIONS -->
+<section id="home">
+  <h1>Home Section</h1>
+</section>
+
+<section id="products">
+  <h1>Products Section</h1>
+</section>
+
+<section id="about">
+  <h1>About Section</h1>
+</section>
+
+<!-- SEARCH BAR -->
+<center>
+<input type="text" id="searchBar" placeholder="Search books..." onkeyup="searchProducts()"><button onclick>⌕</button> </center>
+
+    <!-- ICON BUTTONS -->
+    <div class="nav-icons">
+        <button onclick="toggleFavorites()">❤️</button>
+        <button onclick="toggleCart()">🛒</button>
+    </div>
+
+      <div class="categories"> <center>
+          <button onclick="filterCategory('all')">📦All📦</button>
+          <button onclick="filterCategory('percy')">🔱Percy Jackson📖</button>
+          <button onclick="filterCategory('apollo')">☀️The Trials of Apollo📖</button>
+          <button onclick="filterCategory('homer')">🪶Homer's Series🪶</button>
+          <button onclick="filterCategory('myth')">🕯️Greek Mythology🕯️</button>
+          <button onclick="filterCategory('accessories')">🛍️Accessories🛍️</button> </center>
+      </div>
+  </div>
+
+  <div class="grid" id="productGrid"></div>
+</div>
+
+<!-- PRODUCT PAGE -->
+<div id="productPage" style="display:none;">
+    <button onclick="goBack()">← Back</button>
+
+    <div class="product-container">
+        <div class="images">
+            <img id="mainImage" class="main-img">
+            <div id="thumbs" class="thumbs"></div>
+        </div>
+
+        <div class="details">
+            <h2 id="pName"></h2>
+            <p class="price" id="pPrice"></p>
+            <p id="pDesc"></p>
+
+            <label>Quantity:</label>
+            <input type="number" value="1">
+
+            <br><br>
+
+            <button onclick="addToCart(currentProduct.name,currentProduct.price)">Add to Cart</button>
+            <button onclick="buyNow()">Buy Now</button>
+        </div>
+    </div>
+</div>
+
+<script>
+function scrollToSection(id) {
+document.getElementById(id).scrollIntoView({
+behavior: "smooth"
+});
+}
+
+function goToPage(page) {
+window.location.href = page;
+}
+
+function searchProducts(){
+    let value = document.getElementById("searchBar").value.toLowerCase();
+
+    let filtered = products.filter(p =>
+        p.name.toLowerCase().includes(value)
+    );
+
+    displayProducts(filtered);
+}
+
+// PRODUCTS
+let products = [
+    {name:"Percy Jackson Set",price:1200, rating:4.7, sold:5000, category:"percy",images:["https://via.placeholder.com/300"],desc:"Percy Jackson whole set   of 5 books from Book 1-5"},
+    {name:"Percy Jackson (Individual)",price:250, rating:4.9, sold:6000, category:"percy",images:["https://via.placeholder.com/300"],desc:"Percy Jackson Book 1-5 individual purchase each (Not a set)"},
+
+    {name:"Trials of Apollo Set",price:1000, rating:4.6, sold:4560, category:"apollo",images:["https://via.placeholder.com/300"],desc:"The Trials of Apollo whole set of 5 Books 1-5"},
+    {name:"Trials of Apollo (Individual)",price:220, rating:4.7, sold:4980, category:"apollo",images:["https://via.placeholder.com/300"],desc:"The Trials of Apollo Book 1-5 individual purchase each (Not a set)"},
+
+    {name:"The Iliad",price:650, rating:4.5, sold:4230, category:"homer",images:["https://via.placeholder.com/300"],desc:"Homer's The Iliad Book that is all about the Trojan war"},
+    {name:"The Odyssey",price:600, rating:4.5, sold:4000, category:"homer",images:["https://via.placeholder.com/300"],desc:"Homer's The Odyssey Book all about the Journey of Odysseus"},
+
+    {name:"Circe",price:700, rating:4.4, sold:4000, category:"myth",images:["https://via.placeholder.com/300"],desc:"Circe Book by Madeline Miller"},
+    {name:"Song of Achilles",price:750, rating:4.5, sold:4880,  category:"myth",images:["https://via.placeholder.com/300"],desc:"Achilles story"},
+    {name:"Elektra",price:720, rating:4.3, sold:3799, category:"myth",images:["https://via.placeholder.com/300"],desc:"Book by Jennifer Saint"},
+    {name:"A Thousand Ships",price:780, rating:4.4, sold:4000, category:"myth",images:["https://via.placeholder.com/300"],desc:"A Thousand Ships by Natalie Haynes"}
+,
+    {name:"Bookmarks Set",price:200, rating:4.5, sold:3000, category:"accessories",images:["https://via.placeholder.com/300"],desc:"Bookmarks 10 pieces set"},
+    {name:"Bookmark Stickers",price:150, rating:4.5, sold:3000, category:"accessories",images:["https://via.placeholder.com/300"],desc:"Bookmark stickers set of 50 pieces"},
+    {name:"Highlighter Pens",price:120, rating:4.5, sold:4000, category:"accessories",images:["https://via.placeholder.com/300"],desc:"Highlighter pens set of 7 colored pieces"},
+    {name:"Highlighter Tapes",price:110, rating:4.5, sold:4500, category:"accessories",images:["https://via.placeholder.com/300"],desc:"Hightlighter stickers 10 colored pieces"},
+    {name:"Mini Book Organizer",price:300, rating:4.5, sold:4000, category:"accessories",images:["https://via.placeholder.com/300"],desc:"Mini Book Organizer to tidy up your Book collections"}
+];
+
+let cart = [];
+let currentProduct = {};
+
+// DISPLAY
+function displayProducts(list){
+    let grid = document.getElementById("productGrid");
+    grid.innerHTML="";
+    list.forEach((p,i)=>{
+        grid.innerHTML+=`
+        <div class="card" onclick="openProduct(${i})">
+            <img src="${p.images[0]}">
+            <h3>${p.name}</h3>
+            <p class="price">₱${p.price}</p>
+            <p class="desc">${p.desc}</p>
+            <p class="rating">⭐ ${p.rating} | Sold ${p.sold}</p>
+        </div>`;
+    });
+}
+function addFavorite(i){
+    if(!favorites.includes(products[i])){
+        favorites.push(products[i]);
+        alert("Added to favorites ❤️");
+    }
+}
+
+function toggleFavorites(){
+    displayProducts(favorites);
+}
+
+function addToCart(name,price){
+    cart.push({name,price});
+    updateCart();
+}
+
+function updateCart(){
+    let container = document.getElementById("cartItems");
+    container.innerHTML="";
+
+    cart.forEach(item=>{
+        container.innerHTML+=`
+        <p>${item.name} - ₱${item.price}</p>
+        `;
+    });
+}
+
+function toggleCart(){
+    document.getElementById("cartPanel").classList.toggle("show");
+}
+
+grid.innerHTML+=`
+<div class="card" onclick="openProduct(${i})">
+    <img src="${p.images[0]}">
+    <h3>${p.name}</h3>
+    <p class="price">₱${p.price}</p>
+
+    <button onclick="event.stopPropagation(); addFavorite(${i})">
+        ❤️
+    </button>
+</div>`;
+
+
+
+// OPEN PRODUCT
+function openProduct(i){
+    currentProduct = products[i];
+    document.getElementById("mainShop").style.display="none";
+    document.getElementById("productPage").style.display="block";
+
+    document.getElementById("pName").innerText=currentProduct.name;
+    document.getElementById("pPrice").innerText="₱"+currentProduct.price;
+    document.getElementById("pDesc").innerText=currentProduct.desc;
+
+    document.getElementById("mainImage").src=currentProduct.images[0];
+
+    let thumbs=document.getElementById("thumbs");
+    thumbs.innerHTML="";
+    currentProduct.images.forEach(img=>{
+        thumbs.innerHTML+=`<img src="${img}" onclick="changeImage('${img}')">`;
+    });
+}
+
+// IMAGE CHANGE
+function changeImage(src){
+    document.getElementById("mainImage").src=src;
+}
+
+// NAVIGATION
+function goBack(){
+    document.getElementById("productPage").style.display="none";
+    document.getElementById("mainShop").style.display="block";
+}
+
+function goToShop(){
+    document.getElementById("landingPage").style.display="none";
+    document.getElementById("mainShop").style.display="block";
+}
+
+// FILTER
+function filterCategory(cat){
+    if(cat=="all") displayProducts(products);
+    else displayProducts(products.filter(p=>p.category==cat));
+}
+
+// CART
+function addToCart(name,price){
+    cart.push({name,price});
+    alert("Added to cart!");
+}
+
+// BUY
+function buyNow(){
+    alert("Order placed!");
+}
+
+// INIT
+displayProducts(products);
+</script>
+
+</body>
+</html> 
